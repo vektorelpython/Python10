@@ -29,7 +29,7 @@
 # dosya.truncate()
 # dosya.writelines(liste)
 # dosya.close()
-
+     
 def dosyaAc(adres="defter.csv"):
     import os 
     if os.path.exists(adres):
