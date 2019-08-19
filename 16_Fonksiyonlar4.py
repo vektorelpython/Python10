@@ -31,7 +31,7 @@
 # dosya.close()
 
 def dosyaAc(adres="defter.csv"):
-    import os
+    import os 
     if os.path.exists(adres):
         dosya = open(adres,"r+")
     else:
