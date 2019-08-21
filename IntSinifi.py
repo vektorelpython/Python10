@@ -12,4 +12,7 @@ a = 3
 b = 6
 c = 7
 print(c//a) 
+var1 = 2
+var1 += 5
+
 
