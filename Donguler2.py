@@ -1,20 +1,20 @@
-# import random
-# sayi =  random.randint(1,50)
-# buyukliste = []
-# kolonSay = int(input("Kolon Sayısı Giriniz"))
-# for j in range(0,kolonSay):
-#     liste = []
-#     for i in range(0,6):
-#         sayi =  random.randint(1,50)
-#         while sayi in liste:
-#             sayi =  random.randint(1,50)
-#         liste.append(sayi)
-#     liste.sort()
-#     buyukliste.append(liste)
-# print(*buyukliste,sep="\n")
+import random
+sayi =  random.randint(1,50)
+buyukliste = []
+kolonSay = int(input("Kolon Sayısı Giriniz"))
+for j in range(0,kolonSay):
+    liste = []
+    for i in range(0,6):
+        sayi =  random.randint(1,50)
+        while sayi in liste:
+            sayi =  random.randint(1,50)
+        liste.append(sayi)
+    liste.sort()
+    buyukliste.append(liste)
+print(*buyukliste,sep="\n")
 
-# for item in buyukliste:
-#     print(item)
+for item in buyukliste:
+    print(item)
 
 #Faktoriyel Sorusu
 sayi = int(input("Sayıyı Giriniz"))

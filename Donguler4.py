@@ -6,16 +6,16 @@
 #     else:
 #         print(j)
 #         break
-# for j in range(100000,2,-1):
-# # sayi = input("Sayıyı Giriniz")
-#     sonuc = 0
-#     sayi = str(j)
-#     for i in sayi:
-#         sonuc += int(i)**len(sayi)
-#     if sonuc == int(sayi):
-#         print(sayi)
-#         print("Armstrong Sayısı")
-#         break
+for j in range(100000,2,-1):
+# sayi = input("Sayıyı Giriniz")
+    sonuc = 0
+    sayi = str(j)
+    for i in sayi:
+        sonuc += int(i)**len(sayi)
+    if sonuc == int(sayi):
+        print(sayi)
+        print("Armstrong Sayısı")
+        break
 
 
 

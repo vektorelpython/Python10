@@ -6,7 +6,7 @@ programı yazınız
 örnek : Çıktı: Dokuz Milyar Sekiz Yüz Kır Beş Milyon Yedi Yüz Kırk Bir
 Bin Sekiz Yüz Elli İki
 """
-456852741852963
+
 # metin = input("Tutarı Giriniz")
 basamak =  {
 0:"",
@@ -41,6 +41,7 @@ onlar = {
 }
 metin = input("Tutarı Giriniz")
 metin = metin.replace(",","").replace(".","")
+metin = "9845845802"
 while len(metin)%3 > 0:
     metin = "0" + metin
 liste = []

@@ -72,15 +72,15 @@
 # print(sozluk)
 # sozluk.popitem()
 # print(sozluk)
-a = int(input("Parametre Giriniz"))
-if a == 2 and not a < 0:
-    print("parametre 2 geldi")
-elif a == 1:
-    print("parametre 1 geldi")
-elif a == 3:
-    print("parametre 3 geldi")
-else:
-    print("parametre",a)
+# a = int(input("Parametre Giriniz"))
+# if a == 2 and not a < 0:
+#     print("parametre 2 geldi")
+# elif a == 1:
+#     print("parametre 1 geldi")
+# elif a == 3:
+#     print("parametre 3 geldi")
+# else:
+#     print("parametre",a)
 
 # var2 is not var1
 # metin = "BEŞİKTAŞ"
@@ -88,6 +88,13 @@ else:
 # 2 AND ve
 # 3 OR veya
 # 1 NOT
-liste = [i for i in range(1,20)]
-sozluk = {liste[i]:i*2 for i in range(0,len(liste)) }
-print(sozluk)
+
+# liste = [i for i in range(1,20)]
+# sozluk = {liste[i]:i*2 for i in range(0,len(liste)) }
+# print(sozluk)
+
+metin =  input("Giriş Yapınız")
+if metin:
+    print("Giriş Başarılı")
+else:
+    print("Giriş Yapmadınız")
