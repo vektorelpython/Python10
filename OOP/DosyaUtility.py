@@ -6,7 +6,7 @@ class DosyaTool():
         self.dosya = None
         self.dosyaAc()
         self.sozluk = kwargs
-
+    print(__name__)
     def dosyaAc(self):
         if os.path.exists(self.adres):
             dosya = open(self.adres,"r+")
@@ -60,5 +60,30 @@ class DosyaTool():
         self.dosya.truncate()
         self.dosya.writelines(liste)
         self.dosya.close()
-
-        #ALANLAR=["Adı","Soyadı","Telefon"]
+if __name__ == "__main__":
+    menu = """
+    1-Ekleme
+    2-Düzeltme
+    3-Silme
+    4-Listeleme
+    5-Arama
+    6-Çıkış
+    """
+    anahtar = 1
+    while anahtar == 1:
+        print("*"*30)
+        print(menu)
+        print("*"*30)
+        islem = int(input("İşlem Seçimi"))
+        if islem in (1,2,3):
+            idu(islem)
+        elif islem == 4:
+            Listele()
+        elif islem == 5:
+            arama()
+        elif islem == 6:
+            anahtar = 0
+        else:
+            print("Menü Dışında Seçenek Girdin ")
+    else:
+        print("İyi Günler Dileriz")
