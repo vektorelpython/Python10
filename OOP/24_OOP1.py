@@ -44,4 +44,5 @@ print(misket.tur)
 # print(duman.tuy_uzunlugu)
 # print(misket.tuy_uzunlugu)
 # misket.besle()
-# print(type(misket))
+
+
