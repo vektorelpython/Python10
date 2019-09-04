@@ -2,7 +2,7 @@ import os
 class DosyaTool():
     __dosyaUzanti = ".csv"
     def __init__(self,adres="isimyok",**kwargs):
-        self.adres = os.getcwd()+os.sep+adres+self.__dosyaUzanti
+        self.adres = os.getcwd()+os.sep+adres+self.dosyaUzantisi
         self.dosya = None
         self.dosyaAc()
         self.sozluk = kwargs
