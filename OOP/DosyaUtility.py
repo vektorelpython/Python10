@@ -1,12 +1,34 @@
 import os
 class DosyaTool():
-    dosyaUzanti = ".csv"
+    __dosyaUzanti = ".csv"
     def __init__(self,adres="isimyok",**kwargs):
-        self.adres = os.getcwd()+os.sep+adres+self.dosyaUzanti
+        self.adres = os.getcwd()+os.sep+adres+self.__dosyaUzanti
         self.dosya = None
         self.dosyaAc()
         self.sozluk = kwargs
-    print(__name__)
+
+    @property
+    def dosyaUzantisi(self):
+        return self.__dosyaUzanti
+
+    @dosyaUzantisi.setter
+    def dosyaUzantisi(self,yenideger):
+        if yenideger.startswith(".") and yenideger in [".txt",".csv"]:
+            self.__dosyaUzanti = yenideger
+            return self.__dosyaUzanti
+        else:
+            return None
+
+    @dosyaUzantisi.deleter
+    def dosyaUzantisi(self):
+        del self.__dosyaUzanti
+
+
+
+    @staticmethod
+    def piNumber():
+        print(22/7)
+
     def dosyaAc(self):
         if os.path.exists(self.adres):
             dosya = open(self.adres,"r+")
@@ -14,14 +36,29 @@ class DosyaTool():
             dosya = open(self.adres,"w+")
         self.dosya = dosya
 
+    def arama(self,param=""):
+        liste = self.dosyaOku()
+        sonucListesi = []
+        for item in liste:
+            for i in item.split(";"):
+                if  param.upper() in i.upper():
+                    sonucListesi.append(item)
+        return sonucListesi
+
+    
+    def AramaCagir(self):
+        aramaKelime = input("aramak istediğinizi yazınız")
+        sonuc = self.arama(aramaKelime)
+        self.EkranaListeYaz(sonuc)
+        
+
     def dosyaOku(self):
         self.dosyaAc()
         self.dosya.seek(0)
         liste = self.dosya.readlines()
         return liste
 
-    def Listele(self):
-        liste = self.dosyaOku()
+    def EkranaListeYaz(self,liste=[]):
         metin = ""
         for i in range(0,len(liste)):
             metin = "{}".format((i+1))
@@ -30,7 +67,12 @@ class DosyaTool():
             print(metin)
         self.dosya.close()
 
-    def girisAl(self):
+    def Listele(self):
+        liste = self.dosyaOku()
+        self.EkranaListeYaz(liste)
+       
+
+    def girisAlUser(self):
         sonuc = ""
         for key,value in self.sozluk.items():
             if key=="ALANLAR":
@@ -39,28 +81,67 @@ class DosyaTool():
         sonuc = sonuc.rstrip(";") + "\n"
         return sonuc
     
-    def idu(self,param=0):
+    def girisAlComp(self,):
+        sonuc = ""
+        for key,value in self.sozluk.items():
+            if key=="ALANLAR":
+                for i in range(0,len(value)):
+                # for item in value:
+                    sonuc+= self.girisler[i] + ";"
+        sonuc = sonuc.rstrip(";") + "\n"
+        return sonuc
+    
+    def iduUser(self,param=0):
         self.Listele()
         kayit = ""
         liste = self.dosyaOku()
         # ekleme
         if param == 1:
-            kayit = self.girisAl()
+            kayit = self.girisAlUser()
             liste.insert(0,kayit)
         #düzeltme
         elif param == 2:
             kayitID = int(input("Düzenlenecek Kaydı Seç"))
-            kayit = self.girisAl()
+            kayit = self.girisAlUser()
             liste[kayitID-1] = kayit
         #silme
         elif param==3:
             kayitID = int(input("Silinecek Kaydı Seç"))
             liste.pop(kayitID-1)
+        self.kaydet(liste)
+
+
+    def iduComp(self,*args,param=0,ID = 0):
+        self.girisler = args
+        kayit = ""
+        liste = self.dosyaOku()
+        # ekleme
+        if param == 1:
+            kayit = self.girisAlComp()
+            liste.insert(0,kayit)
+        #düzeltme
+        elif param == 2:
+            kayitID = ID
+            kayit = self.girisAlComp()
+            liste[kayitID-1] = kayit
+        #silme
+        elif param==3:
+            kayitID = ID
+            liste.pop(kayitID-1)
+        self.kaydet(liste)
+
+    def kaydet(self,liste=[]):
         self.dosya.seek(0)
         self.dosya.truncate()
         self.dosya.writelines(liste)
         self.dosya.close()
+
+
+    def temizle(self):
+        self.dosyaAc()
+        self.kaydet()
 if __name__ == "__main__":
+    dt = DosyaTool(ALANLAR=["bos","bos1"])
     menu = """
     1-Ekleme
     2-Düzeltme
@@ -76,11 +157,11 @@ if __name__ == "__main__":
         print("*"*30)
         islem = int(input("İşlem Seçimi"))
         if islem in (1,2,3):
-            idu(islem)
+            dt.iduUser(islem)
         elif islem == 4:
-            Listele()
+            dt.Listele()
         elif islem == 5:
-            arama()
+            dt.AramaCagir()
         elif islem == 6:
             anahtar = 0
         else:
