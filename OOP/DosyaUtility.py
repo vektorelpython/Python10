@@ -9,6 +9,7 @@ class DosyaTool():
         self.dosyaAc()
         self.sozluk = kwargs
         self.dosyaListeEkle()
+
     def dosyaisimguncelle(self):
         dosya = open(self.adres)
         metin =  dosya.read()
