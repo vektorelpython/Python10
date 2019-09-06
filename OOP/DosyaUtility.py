@@ -1,11 +1,37 @@
 import os
 class DosyaTool():
     __dosyaUzanti = ".csv"
+    __dosyalistesi = []
     def __init__(self,adres="isimyok",**kwargs):
         self.adres = os.getcwd()+os.sep+adres+self.dosyaUzantisi
+        self._isim = adres
         self.dosya = None
         self.dosyaAc()
         self.sozluk = kwargs
+        self.dosyaListeEkle()
+    def dosyaisimguncelle(self):
+        dosya = open(self.adres)
+        metin =  dosya.read()
+        self.adres = os.getcwd()+os.sep+self.isim+self.dosyaUzantisi
+        yeniDosya = open(self.adres,"w")
+        yeniDosya.write(metin)
+        yeniDosya.close()
+
+    def dosyaListeEkle(self):
+        self.__dosyalistesi.append(self._isim)
+
+    @property
+    def isim(self):
+        return self._isim
+
+    @isim.setter
+    def isim(self,yeni_deger):
+        indis = self.__dosyalistesi.index(self._isim)
+        self.__dosyalistesi[indis] = yeni_deger
+        self._isim = yeni_deger
+        self.dosyaisimguncelle()
+
+        
 
     @property
     def dosyaUzantisi(self):
@@ -23,7 +49,12 @@ class DosyaTool():
     def dosyaUzantisi(self):
         del self.__dosyaUzanti
 
-
+    @classmethod
+    def dosyaListesiYazdir(cls):
+        print("Dosya Listesi")
+        for item in cls.__dosyalistesi:
+            print(item)
+    
 
     @staticmethod
     def piNumber():
